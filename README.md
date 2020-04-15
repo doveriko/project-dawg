@@ -1,4 +1,4 @@
-# DOGGY
+# DAWG
 
 ## Description
 
