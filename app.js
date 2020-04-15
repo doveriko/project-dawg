@@ -10,7 +10,7 @@ const logger = require("morgan");
 const createError = require("http-errors");
 // const bodyParser   = require('body-parser');
 
-// Packages for authentication: 
+// Packages for authentication:
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
