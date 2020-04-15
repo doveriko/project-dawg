@@ -14,7 +14,10 @@ const createError = require("http-errors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
-const app = express();
+var router = require('./routes/auth-routes');
+var privateRouter = require('./routes/site-routes');
+
+var app = express();
 
 const dbName = "tinder-dogs";
 mongoose.connect(`mongodb://localhost:27017/${dbName}`, {
@@ -65,8 +68,8 @@ app.use(
 app.locals.title = 'DAWG - A social network for your dog';
 
 // Routes
-app.use('/', require('./routes/index'));
-// app.use('/', require('./routes/site-routes'));
+app.use('/', router);
+app.use('/', privateRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
