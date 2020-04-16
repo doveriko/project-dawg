@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // SCHEMA
 const dogSchema = new Schema(
   {
-    name: { type: String, required: true },
+    dogName: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
     age: { type: Number, min: 0, required: true },
