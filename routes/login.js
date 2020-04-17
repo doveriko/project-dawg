@@ -1,5 +1,6 @@
 var express = require("express");
 var loginRouter = express.Router();
+const bcrypt = require("bcrypt")
 
 const Dog = require("../models/dog");
 
@@ -7,7 +8,7 @@ loginRouter.get("/", (req, res) => {
   res.render("login");
 });
 
-loginRouter.post("/login", (req, res, next) => {
+loginRouter.post("/", (req, res, next) => {
 
   const { email, password } = req.body;
 
@@ -19,7 +20,7 @@ loginRouter.post("/login", (req, res, next) => {
   }
 
   Dog.findOne({ email })
-    .then((user) => {
+    .then(user => {
       if (!user) {
         res.render("login", {
           errorMessage: "That e-mail is not registered. Please, try again.",

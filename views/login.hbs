@@ -1,1 +1,31 @@
-<h1>LOG IN PAGE</h1>
+<div id="index">
+
+  <div>
+      <img src="/images/logo.png" alt="logo">
+  </div>
+
+  <div>
+      <img src="/images/dawg.png" alt="dawg">
+  </div>
+
+  <div>
+    <form action="/auth/login" method="POST" class="login-form">
+
+      <label for="email">Email</label>
+      <input type="text" name="email">
+
+      <label for="password">Password</label>
+      <input type="password" name="password">
+
+{{!-- <button type="submit">Sign Up</button> --}}
+      <a href="/swipe"><button id="login-button">LOG IN</button></a>
+    </form>
+
+    <h6>Don't have an account? <a href="/auth/signup">Register now!</a></h6>
+  </div>
+
+    {{#if errorMessage }}
+    <p class="error-message">{{ errorMessage }}</p>
+    {{/if}}
+
+</div>

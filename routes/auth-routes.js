@@ -7,9 +7,13 @@ const signupRouter = require("./signup");
 router.use("/login", loginRouter);
 router.use("/signup", signupRouter);
 
-/* GET home page */
+// If user is not logged in, go to "index" (sign-up page)
 router.get('/', (req, res, next) => {
+  if (!req.session.currentUser) {
   res.render('index');
+  } else {
+    res.render('profile')
+  }
 });
 
 router.get("/logout", (req, res, next) => {

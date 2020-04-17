@@ -14,13 +14,13 @@ signupRouter.get("/", (req, res) => {
 
 signupRouter.post("/", (req, res, next) => {
   // 3 - Deconstruct the properties of the new user ("dog") from req.body
+  const { dogName, email, password, age, phoneNumber, breed, activity, prefBreed, prefAgeMin, prefAgeMax } = req.body;
+  
   const searchPreferencesObj = {
     breed: prefBreed, 
     ageMin: prefAgeMin,
     ageMax: prefAgeMax
   }
-
-  const { dogName, email, password, age, phoneNumber, breed, activity, prefBreed, prefAgeMin, prefAgeMax } = req.body;
   // image will go separately due to Cloudinary config
 
   // 4 - Check if any of the required fields are empty and display error message
@@ -57,8 +57,11 @@ signupRouter.post("/", (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     // Then create the new user ("dog") in DB
-    Dog.create({ dogName, email, password: hashedPassword, age, phoneNumber, breed, image, activity, searchPreferencesObj })
-      .then(dogCreated => res.redirect("/swipe"))
+    Dog.create({ dogName, email, password: hashedPassword, age, phoneNumber, breed, activity, searchPreferencesObj })
+      .then(dogCreated => {
+        req.session.currentUser = dogCreated;
+        res.redirect("/swipe")
+      })
       .catch(err => {
         res.render("signup", {
           errorMessage: "There has been some error. Could you try again?"
