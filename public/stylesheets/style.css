@@ -2,12 +2,18 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   text-align: center;
 }
 
+h1 {
+  color: #8143DB;
+  margin-top: 30px;
+}
+
 a {
-  color: #00B7FF; }
+  color: #EF697D;
+}
 
 .error-message {
   color: red;
@@ -21,6 +27,14 @@ a {
   margin: 0px;
 }
 
+span #profile-icon {
+  visibility: hidden;
+}
+
+span:hover #profile-icon {
+  visibility: visible;
+}
+
 .fa {
   font-size: 50px;
   color: rgb(255, 173, 173);
@@ -31,7 +45,7 @@ a {
   color: rgb(255, 163, 58);
 }
 
-/* Index */
+/* Index - login */
 #index {
   height: 100vh;
   display: flex;
@@ -45,18 +59,19 @@ a {
   align-items: center;
 }
 
-.login-form input{
+.login-form input {
   margin: 10px 0;
   width: 300px;
   padding: 10px;
   height: 40px;
-  border: 1px solid purple;
+  border: 1px solid #CEC4E4;
   border-radius: 3px;
+  background-color: aliceblue;
 }
 
 .login-form button {
-  background-color: rgb(125, 0, 129);
-  color:white;
+  background-color: #EF697D;
+  color: aliceblue;
   border-radius: 5px;
   margin: 30px;
   width: 180px;
@@ -65,8 +80,44 @@ a {
   font-size: 20px;
 }
 
-.signup-form {
-  display: flex;
-  flex-direction: column;
+/* Sign up */
+
+.my-form {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.my-form .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.my-form input {
+  border: 1px solid #CEC4E4;
+  background-color: aliceblue;
+}
+
+.my-form select {
+  border: 1px solid #CEC4E4;
+  background-color: aliceblue;
+  padding: 5px;
+}
+
+.my-form button {
+  background-color: rgba(266, 110, 125, 0.95);
+  color: aliceblue;
+  border-radius: 5px;
+  margin: 30px;
+  width: 150px;
+  height: 60px;
   align-items: center;
+  font-size: 20px;
+}
+
+.my-form button:hover {
+  background-color: rgba(266, 110, 125);
+}
+
+.card-header {
+  background-color: rgba(266, 110, 125, 0.6);
 }

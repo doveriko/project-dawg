@@ -12,6 +12,7 @@ loginRouter.post("/", (req, res, next) => {
 
   const { email, password } = req.body;
 
+
   if (email === "" || password === "") {
     res.render("login", {
       errorMessage: "Please enter both e-mail and password to sign up.",
@@ -20,7 +21,7 @@ loginRouter.post("/", (req, res, next) => {
   }
 
   Dog.findOne({ email })
-    .then(user => {
+    .then(user => {      
       if (!user) {
         res.render("login", {
           errorMessage: "That e-mail is not registered. Please, try again.",
