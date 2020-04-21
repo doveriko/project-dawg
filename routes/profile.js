@@ -2,6 +2,7 @@ var express = require("express");
 var profileRouter = express.Router();
 
 const Dog = require("../models/dog")
+const parser = require('../config/cloudinary');
 
 
 // GET /profile
@@ -38,18 +39,20 @@ profileRouter.get("/edit", (req, res) => {
 
 // POST /profile/edit
 
-profileRouter.post("/edit", (req, res) => {
+profileRouter.post("/edit", parser.single('image'), (req, res) => {
 
   const {_id} = req.session.currentUser
   const { dogName, phoneNumber, email, age, breed, activity } = req.body;
   
+  const image = req.file.secure_url
+
   const searchPreferences = {
     breed: req.body.prefBreed, 
     ageMin: req.body.prefAgeMin,
     ageMax: req.body.prefAgeMax
   }
 
-  Dog.updateOne({_id},{ dogName, phoneNumber, email, age, breed, activity, searchPreferences })
+  Dog.updateOne({_id},{ dogName, phoneNumber, image, email, age, breed, activity, searchPreferences })
   .then( () => res.redirect("/profile"))
   .catch( (err) => console.log(err));
 })

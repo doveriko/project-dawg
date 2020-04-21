@@ -7,6 +7,7 @@ const saltRounds = 10;
 // var zxcvbn = require("zxcvbn");
 
 const Dog = require("../models/dog")
+const parser = require('../config/cloudinary');
 
 
 // GET /signup
@@ -18,7 +19,7 @@ signupRouter.get("/", (req, res) => {
 
 // POST /signup
 
-signupRouter.post("/", (req, res, next) => {
+signupRouter.post("/", parser.single('image'), (req, res, next) => {
   // 3 - Deconstruct the properties of the new user ("dog") from req.body
   const { dogName, email, password, age, phoneNumber, breed, activity, prefBreed, prefAgeMin, prefAgeMax } = req.body;
   
@@ -27,7 +28,8 @@ signupRouter.post("/", (req, res, next) => {
     ageMin: prefAgeMin,
     ageMax: prefAgeMax
   }
-  // image will go separately due to Cloudinary config
+
+  const image = req.file.secure_url
 
   // 4 - Check if any of the required fields are empty and display error message
   if (dogName === "" || email === "" || password === "" || age === "" || phoneNumber === "" || breed  === "") {
@@ -63,7 +65,7 @@ signupRouter.post("/", (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     // Then create the new user ("dog") in DB
-    Dog.create({ dogName, email, password: hashedPassword, age, phoneNumber, breed, activity, searchPreferencesObj })
+    Dog.create({ dogName, image, email, password: hashedPassword, age, phoneNumber, breed, activity, searchPreferencesObj })
       .then(dogCreated => {
         req.session.currentUser = dogCreated;
         res.redirect("/swipe")
