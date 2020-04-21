@@ -4,14 +4,19 @@ const bcrypt = require("bcrypt")
 
 const Dog = require("../models/dog");
 
+
+// GET /login
+
 loginRouter.get("/", (req, res) => {
   res.render("login");
 });
 
+
+// POST /login
+
 loginRouter.post("/", (req, res, next) => {
 
   const { email, password } = req.body;
-
 
   if (email === "" || password === "") {
     res.render("login", {
@@ -46,5 +51,6 @@ loginRouter.post("/", (req, res, next) => {
       next(error);
     });
 });
+
 
 module.exports = loginRouter;

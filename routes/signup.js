@@ -8,9 +8,15 @@ const saltRounds = 10;
 
 const Dog = require("../models/dog")
 
+
+// GET /signup
+
 signupRouter.get("/", (req, res) => {
   res.render("signup")
 })
+
+
+// POST /signup
 
 signupRouter.post("/", (req, res, next) => {
   // 3 - Deconstruct the properties of the new user ("dog") from req.body
@@ -70,5 +76,6 @@ signupRouter.post("/", (req, res, next) => {
   })
   .catch(err => console.log(err));
 });
+
 
 module.exports = signupRouter;

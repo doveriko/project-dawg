@@ -3,6 +3,9 @@ var profileRouter = express.Router();
 
 const Dog = require("../models/dog")
 
+
+// GET /profile
+
 profileRouter.get("/", (req, res) => {
 
   const {_id} = req.session.currentUser;
@@ -17,6 +20,9 @@ profileRouter.get("/", (req, res) => {
   .catch((err) => console.log(err));
 })
 
+
+// GET /profile/edit
+
 profileRouter.get("/edit", (req, res) => {
 
   const {_id} = req.session.currentUser
@@ -28,6 +34,9 @@ profileRouter.get("/edit", (req, res) => {
   .then( (dog) => res.render("profile-edit", {dog}))
   .catch( (err) => console.log(err));
 })
+
+
+// POST /profile/edit
 
 profileRouter.post("/edit", (req, res) => {
 
@@ -45,6 +54,9 @@ profileRouter.post("/edit", (req, res) => {
   .catch( (err) => console.log(err));
 })
 
+
+// DELETE /profile/delete/:id
+
 profileRouter.post("/delete/:id", (req, res) => {  
   
   Dog.findOneAndDelete(req.params.id)
@@ -56,6 +68,7 @@ profileRouter.post("/delete/:id", (req, res) => {
   })
   .catch( (err) => console.log(err))
 })
+
 
 module.exports = profileRouter;
 

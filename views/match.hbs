@@ -1,5 +1,18 @@
 <div>
-{{> navbar}}
+  {{> navbar}}
 </div>
-<h1>MATCH PAGE</h1>
 
+<h1>MATCHES</h1>
+
+{{#each matches}}
+<div>
+  <img src="{{this.image}}" alt="match image" class="displayed-image">
+  <p class="match-name">{{this.dogName}} </p>
+  <p>Contact number: {{this.phoneNumber}}</p>
+</div>
+{{else}}
+<img src="/images/notfound.png" alt="" class="displayed-image">
+<br>
+<br>
+<h2>Not matches found yet!</h2>
+{{/each}}

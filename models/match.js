@@ -21,6 +21,6 @@ const matchSchema = new Schema({
   },
 });
 
-const Match = mongoose.Model("Match", matchSchema);
+const Match = mongoose.model("Match", matchSchema);
 
 module.exports = Match;

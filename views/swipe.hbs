@@ -1,6 +1,33 @@
 <div>
-{{> navbar}}
+  {{> navbar}}
 </div>
-<h1>SWIPE PAGE</h1>
-<p>Mr. {{user}} is logged in</p>
-<a href="/logout"><button id="profile-buttons">LOG OUT</button></a>
+
+<div id="display-wrapper">
+
+  {{#if errorMessage }}
+  <p class="error-message">{{ errorMessage }}</p>
+  {{/if}}
+
+  <h1 class="dogName">{{dogRandom.dogName}}</h1>
+
+  <img src="{{dogRandom.image}}" alt="profile image" class="displayed-image">
+
+  <h5 id="profile-text">
+    "Hi! I'm a {{dogRandom.activity}} {{dogRandom.age}} years old {{dogRandom.breed}}
+    looking for {{dogRandom.searchPreferences.breed}} dogs
+    between {{dogRandom.searchPreferences.ageMin}} and {{dogRandom.searchPreferences.ageMax}}"
+  </h5>
+
+</div>
+
+<div class="twobuttons">
+
+  <form action="/match/{{dogRandom._id}}" method="POST">
+    <button type="submit" class="rejectbutton" value="reject" name="answer"></button>
+  </form>
+
+  <form action="/match/{{dogRandom._id}}" method="POST">
+    <button type="submit" class="likebutton" value="like" name="answer"></button>
+  </form>
+
+</div>

@@ -1,9 +1,10 @@
 <div>
   {{> navbar}}
+</div>
 
+<div id="profile-display">
 
-<div class="row">
-  <div class="col col-xs-3" id="display-wrapper">
+  <div>
 
     <h1>{{dogName}}</h1>
 
@@ -16,28 +17,29 @@
     </h5>
 
   </div>
-</div>
 
-<div class="twobuttons">
+  <div class="twobuttons">
 
-  <a class="nav-link" href="/profile/edit"><i class="fa fa-edit"></i>
-    <span>EDIT PROFILE</span>
-  </a>
+    <a class="nav-link" href="/profile/edit"><i class="fa fa-edit"></i>
+      <span>EDIT PROFILE</span>
+    </a>
 
-  <a class="nav-link" href="/logout"><i class="fa fa-sign-out"></i>
-    <span>LOG OUT</span>
-  </a>
+    <a class="nav-link" href="/logout"><i class="fa fa-sign-out"></i>
+      <span>LOG OUT</span>
+    </a>
 
-</div>
+  </div>
 
-<div>
-  <form action="/profile/delete/{{_id}}" method="POST">
-    <button type="submit" id="delete-button">
+  <div>
+    <form action="/profile/delete/{{_id}}" method="POST">
+      <button type="submit" id="delete-button">
 
-      <p class="nav-link"><i class="fa fa-trash"></i>
-        <span>DELETE PROFILE</span>
-      </p>
+        <p class="nav-link"><i class="fa fa-trash"></i>
+          <span>DELETE PROFILE</span>
+        </p>
 
-    </button>
-  </form>
+      </button>
+    </form>
+  </div>
+
 </div>

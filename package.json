@@ -29,7 +29,7 @@
   "description": "## Description",
   "main": "app.js",
   "bin": {
-    "project-dawg": "seeds.js"
+    "project-dawg": "seed.js"
   },
   "repository": {
     "type": "git",
