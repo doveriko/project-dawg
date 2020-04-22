@@ -1,8 +1,8 @@
-require("dotenv").config();
-
 const mongoose = require("mongoose");
 const Dog = require("./../models/dog");
 const bcrypt = require("bcrypt");
+
+require("dotenv").config();
 
 const dogs = [
   {
