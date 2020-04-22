@@ -24,7 +24,6 @@
     "multer-storage-cloudinary": "^2.2.1",
     "node-sass-middleware": "^0.11.0",
     "path": "^0.12.7",
-    "serve-favicon": "^2.5.0",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
