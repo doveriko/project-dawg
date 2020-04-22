@@ -4,15 +4,21 @@ var signupRouter = express.Router();
 const bcrypt = require("bcrypt")
 // 2 - Create variable for the number of salt rounds
 const saltRounds = 10;
-// var zxcvbn = require("zxcvbn");
 
 const Dog = require("../models/dog")
+const parser = require('../config/cloudinary');
+
+
+// GET /signup
 
 signupRouter.get("/", (req, res) => {
   res.render("signup")
 })
 
-signupRouter.post("/", (req, res, next) => {
+
+// POST /signup
+
+signupRouter.post("/", parser.single('image'), (req, res, next) => {
   // 3 - Deconstruct the properties of the new user ("dog") from req.body
   const { dogName, email, password, age, phoneNumber, breed, activity, prefBreed, prefAgeMin, prefAgeMax } = req.body;
   
@@ -21,7 +27,8 @@ signupRouter.post("/", (req, res, next) => {
     ageMin: prefAgeMin,
     ageMax: prefAgeMax
   }
-  // image will go separately due to Cloudinary config
+
+  const image = req.file.secure_url
 
   // 4 - Check if any of the required fields are empty and display error message
   if (dogName === "" || email === "" || password === "" || age === "" || phoneNumber === "" || breed  === "") {
@@ -31,15 +38,7 @@ signupRouter.post("/", (req, res, next) => {
     return;
   }
 
-    // Check the password strength
-  /*   if (zxcvbn(password).score < 3) {
-    res.render("auth/signup-form", {
-      errorMessage: "Password too weak, try again"
-    });
-    return;
-  } */
-
-// 5 - Check in the dogs collection if the email already exists (must be unique)
+  // 5 - Check in the dogs collection if the email already exists (must be unique)
   Dog.findOne({ email })
   .then(user => {
     // If that email already exists in the DB, redirect to 'signup' and display error message
@@ -57,7 +56,7 @@ signupRouter.post("/", (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     // Then create the new user ("dog") in DB
-    Dog.create({ dogName, email, password: hashedPassword, age, phoneNumber, breed, activity, searchPreferencesObj })
+    Dog.create({ dogName, image, email, password: hashedPassword, age, phoneNumber, breed, activity, searchPreferencesObj })
       .then(dogCreated => {
         req.session.currentUser = dogCreated;
         res.redirect("/swipe")
@@ -70,5 +69,6 @@ signupRouter.post("/", (req, res, next) => {
   })
   .catch(err => console.log(err));
 });
+
 
 module.exports = signupRouter;

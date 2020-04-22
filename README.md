@@ -2,100 +2,122 @@
 
 ## Description
 
-Doggy is an app to meet new dogs arround you. You can create a profile, search for new dog friends and chat with them!
+Dawg is a social app designed for dogs. Their owners would create a profile where to look for new friends for his best friend (even if it sounds like a paradox) according to filters like age, breed or level of activity. When a match is found, the owners would have access to each other's contact numbers and allow their pets to meet.
+
+This is a makeover of an original [pair project](https://github.com/guillemtubert/Dawg).
+
+
 
 ## User Stories
 
-- **homepage** - As a user I want to be able to access the homepage so that I see what the app is about and login and signup
-- **sign up** - As a user I want to sign up on the webpage so that I can see all the events that I could attend
-- **login** - As a user I want to be able to log in on the webpage so that I can get back to my account
-- **logout** - As a user I want to be able to log out from the webpage so that I can make sure no one will access my account
-- **Delete match**  - As a user I want to be able to delete a match that I don't want anymore
-- **match** - As a user I want to be able to see the dogs arround me, like them or reject them.
-- **Direct Messages** - Chat with the dogs you've matched!
-- **Profile** - See your profile. Edit it and change the search settings
+- **Sign up** - As a user I want to sign up to register the details of my dog, my basic personal info and some searching filters to find the perfect match for my dog.
+- **Login** - As a user I want to be able to log in on the webpage so that I can start searching for dogs.
+- **Logout** - As a user I want to be able to log out from the app to keep my use of it private.
+- **Swipe** - As a user I want to go through the list of candidates and select (green button) or reject (red button) potential mates for my pet.
+- **Match** - As a user I want to be able to see the dogs that like me back. When that happens, a "match" is created and displayed in a section of the app. Then, the contact number of the other dog's owner is revealed so we can meet.
+- **Profile** - As a user I want to see my dog's info gathered in a profile that I can edit, delete or use to log out.
+
+
+## Routes (back-end)
+
+#### Auth routes (public):
+
+| **Method** | **Route** | **Description**                                              | Request  - Body                                              |
+| ---------- | --------- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| GET        | /         | Main page route.  Renders home index view.                   |                                                              |
+| GET        | /login    | Renders login form view.                                     |                                                              |
+| POST       | /login    | Sends login form data to the server.                         | { email, password }                                          |
+| GET        | /signup   | Renders signup form view.                                    |                                                              |
+| POST       | /signup   | Sends sign up info to the server and creates user in the DB. | { dogName, email, image, password, age, phoneNumber, breed, activity, searchPreferences } |
+
+#### Site routes (private):
+
+| Method | Route               | Description                                                  | Request - body                                               |
+| ------ | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `GET`  | /profile            | Renders profile view                                         | req.session.currentUser, _id, dogName, age, breed, image, activity, searchPreferences |
+| `GET`  | /profile/edit       | Renders profile-edit view                                    | req.session.currentUser                                      |
+| PUT    | /profile/edit       | Updates personal info, dog info and search preferences       | req.session.currentUser, { dogName, email, image, password, age, phoneNumber, breed, activity, searchPreferences } |
+| DELETE | /profile/delete/:id | Delete the user's account                                    | req.params.id                                                |
+| GET    | /swipe              | Renders swipe view                                           | req.session.currentUser                                      |
+| GET    | /match              | Renders match view                                           | req.session.currentUser                                      |
+| POST   | /match/:id          | Tracks the interaction between Dogs and passes it to the Match collection | req.session.currentUser                                      |
+
+
+
+## Models
+
+Dog Schema:
+
+```javascript
+  {
+    dogName: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    age: { type: Number, min: 0, required: true },
+    phoneNumber: { type: String, required: true },
+    breed: { type: String, required: true },
+    image: {
+      type: String,
+      default: "http://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/256/22215-dog-icon.png",
+    },
+    activity: { type: String },
+    interactions: [{ type: Schema.Types.ObjectId, ref: "Match" }],
+    selected: [{type: Schema.Types.ObjectId, ref: "Dog"}],
+    searchPreferences: {
+      breed: { type: String },
+      ageMin: { type: Number, min: 0, max: 19 },
+      ageMax: { type: Number, min: 0, max: 20 },
+    },
+  },
+  {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  }
+
+```
+
+Match Schema:
+
+```javascript
+{
+  dogOneId: { type: Schema.Types.ObjectId, ref: "Dog" },
+  dogTwoId: { type: Schema.Types.ObjectId, ref: "Dog" },
+  dogOneAnswer: {
+    type: String,
+    enum: ["like", "reject", "pending"],
+    default: "pending",
+  },
+  dogTwoAnswer: {
+    type: String,
+    enum: ["like", "reject", "pending"],
+    default: "pending",
+  },
+  success: {
+    type: String,
+    enum: ["success", "rejected", "awaiting"],
+    default: "awaiting",
+  },
+}
+
+```
 
 
 
 ## Backlog
 
-List of other features outside of the MVPs scope
-
-Creating events:
-- Create events.
-- Join different events.
-- Earn points / upgrade levels.
-
-Geo Location:
-- Filter the dogs by distance.
-
-Homepage
-- Adding new future features.
+- Add more searching filters.
+- Add a chat.
+- Geo Location: add a map and filter dogs by distance.
+- Create and join events.
 
 
-## Routes (Back-end):
-
-
-
-| **Method** | **Route**                           | **Description**                                              | Request  - Body                                              |
-| ---------- | ----------------------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| `GET`      | `/`                                 | Main page route.  Renders home `index` view.                 |                                                              |
-| `GET`      | `/login`                            | Renders `login` form view.                                   |                                                              |
-| `POST`     | `/login`                            | Sends Login form data to the server.                         | { email, password }                                          |
-| `GET`      | `/signup`                           | Renders `signup` form view.                                  |                                                              |
-| `POST`     | `/signup`                           | Sends Sign Up info to the server and creates user in the DB. | { email, password, [dogName], [phoneNumber], [breed], [age], [imageUrl], [activity] } |
-| `GET`      | `/private/edit-profile`             | Private route. Renders `edit-profile` form view.             |                                                              |
-| `PUT`      | `/private/edit-profile`             | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [dogName], [phoneNumber], [breed], [age], [imageUrl], [activity] } |
-| `POST`     | /private/search-preferences         | Private route. Add the preferences you would like to search with. | {[breed], [age]}                                             |
-| `POST`     | `/private/favorites/`               | Private route. Adds a new favorite for the current user.     | { [dogName], [image], [phoneNumber] }                        |
-| `DELETE`   | `/private/match/:successfulMatchId` | Private route. Deletes the existing favorite from the current user. |                                                              |
-
-## Models
-
-Doggy model
-
-```javascript
-{
-  email: { type: String, required: true }
-  password: { type: String, required: true }
-  dogName: { type: String, required: true }
-  phoneNumber: { type: Number, required: true }
-  breed: { type: String, enum: ['bulldog', 'shi tzu', (...)], required: true},
-  age: { type: Number, required: true }
-  image: { type: String, default: "./img/default.jpg" }
-  activity: { type: String, enum: ["Shy","Friendly","Very Sociable"], required: true},
-  interactions: [matchId],
-}
-
-```
-
-
-
-Match model
-
-```javascript
-{
-  dogOneId: {type: Schema.Types.ObjectId, ref:"Doggy"},
-  dogTwoId: {type: Schema.Types.ObjectId, ref:"Doggy"}
-  dogOneAnswer: { type: String, enum: ["like","reject","pending"], default: "pending" },
-  dogTwoAnswer: { type: String, enum: ["like","reject","pending"], default: "pending" },
-  success: { type: String, enum: ["success","rejected","awaiting"], default: "awaiting" },
-}
-
-```
 
 ## Links
 
-### Trello
+[Repository](https://github.com/doveriko/project-dawg)
 
-[Open the trello!](https://trello.com/b/WuUgMfQq/project-2-doggy)
+[Deploy](https://dawg-app.herokuapp.com/)
 
-### Git
-
-[Repository Link](https://github.com/guillemtubert/Doggy)
-
-[Deploy Link](https://dawg-project.herokuapp.com/)
-
-### Slides 
-
-[Slides Link](https://docs.google.com/presentation/d/1maTh19snJx0KqOmr5Z6mSbECEX2EyE4BDtyz2u09eM8/edit?usp=sharing)
+[Original project](https://github.com/guillemtubert/Dawg)

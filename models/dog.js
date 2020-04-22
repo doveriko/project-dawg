@@ -16,6 +16,7 @@ const dogSchema = new Schema(
     },
     activity: { type: String },
     interactions: [{ type: Schema.Types.ObjectId, ref: "Match" }],
+    selected: [{type: Schema.Types.ObjectId, ref: "Dog"}],
     searchPreferences: {
       breed: { type: String },
       ageMin: { type: Number, min: 0, max: 19 },

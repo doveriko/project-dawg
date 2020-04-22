@@ -1,13 +1,45 @@
 <div>
-{{> navbar}}
+  {{> navbar}}
 </div>
 
-<h1>PROFILE PAGE</h1>
+<div id="profile-display">
 
-<div>
-  
+  <div>
 
+    <h1>{{dogName}}</h1>
 
+    <img src="{{image}}" alt="profile image" class="displayed-image">
+
+    <h5 id="profile-text">
+      "Hi! I'm a {{activity}} {{age}} years old {{breed}}
+      looking for other {{searchPreferences.breed}} dogs
+      between {{searchPreferences.ageMin}} and {{searchPreferences.ageMax}}"
+    </h5>
+
+  </div>
+
+  <div class="twobuttons">
+
+    <a class="nav-link" href="/profile/edit"><i class="fa fa-edit"></i>
+      <span>EDIT PROFILE</span>
+    </a>
+
+    <a class="nav-link" href="/logout"><i class="fa fa-sign-out"></i>
+      <span>LOG OUT</span>
+    </a>
+
+  </div>
+
+  <div>
+    <form action="/profile/delete/{{_id}}" method="POST">
+      <button type="submit" id="delete-button">
+
+        <p class="nav-link"><i class="fa fa-trash"></i>
+          <span>DELETE PROFILE</span>
+        </p>
+
+      </button>
+    </form>
+  </div>
 
 </div>
-      

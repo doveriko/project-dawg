@@ -4,9 +4,15 @@ const bcrypt = require("bcrypt")
 
 const Dog = require("../models/dog");
 
+
+// GET /login
+
 loginRouter.get("/", (req, res) => {
   res.render("login");
 });
+
+
+// POST /login
 
 loginRouter.post("/", (req, res, next) => {
 
@@ -20,7 +26,7 @@ loginRouter.post("/", (req, res, next) => {
   }
 
   Dog.findOne({ email })
-    .then(user => {
+    .then(user => {      
       if (!user) {
         res.render("login", {
           errorMessage: "That e-mail is not registered. Please, try again.",
@@ -45,5 +51,6 @@ loginRouter.post("/", (req, res, next) => {
       next(error);
     });
 });
+
 
 module.exports = loginRouter;

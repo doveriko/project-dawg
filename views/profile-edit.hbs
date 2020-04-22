@@ -1,4 +1,311 @@
 <div>
-{{> navbar}}
+  {{> navbar}}
 </div>
 <h1>PROFILE EDIT PAGE</h1>
+
+<main class="my-form">
+  <div class="cotainer">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <div class="card">
+          <div class="card-header">1. Your basic personal info</div>
+          <div class="card-body">
+
+            <form action="/profile/edit" method="post">
+
+              {{#if errorMessage }}
+              <p style="color: red;" class="error-message">{{ errorMessage }}</p>
+              {{/if}}
+
+              <div class="form-group row">
+                <label for="" class="col-md-4 col-form-label text-md-right">E-Mail</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="email" value="{{dog.email}}">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="" class="col-md-4 col-form-label text-md-right">Phone number</label>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="phoneNumber" value="{{dog.phoneNumber}}">
+                </div>
+              </div>
+
+          </div>
+        </div>
+
+        <br>
+
+        <div class="card">
+          <div class="card-header">2. Your dog's info</div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Name</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="dogName" value="{{dog.dogName}}">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Age</label>
+              <div class="col-md-6">
+                <input type="number" class="form-control" name="age" value="{{dog.age}}">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Breed</label>
+              <div class="col-md-6">
+                <select name="breed" value="{{dog.breed}}">
+                  <option value="mix">Mix</option>
+                  <option value="affenpinscher">Affenpinscher</option>
+                  <option value="airedale">Airedale</option>
+                  <option value="akita">Akita</option>
+                  <option value="appenzeller">Appenzeller</option>
+                  <option value="australian-shepherd">Australian Shepherd</option>
+                  <option value="basenji">Basenji</option>
+                  <option value="beagle">Beagle</option>
+                  <option value="bernese-mountain">Bernese Mountain</option>
+                  <option value="bichon-frise">Bichon Frise</option>
+                  <option value="bluetick">Bluetick</option>
+                  <option value="borzoi">Borzoi</option>
+                  <option value="bouvier">Bouvier</option>
+                  <option value="boxer">Boxer</option>
+                  <option value="brabancon">Brabancon</option>
+                  <option value="briard">Briard</option>
+                  <option value="bulldog">Bulldog</option>
+                  <option value="bullterrier">Bullterrier</option>
+                  <option value="cairn">Cairn</option>
+                  <option value="cattledog">Cattledog</option>
+                  <option value="chihuahua">Chihuahua</option>
+                  <option value="chow">Chow</option>
+                  <option value="clumber">Clumber</option>
+                  <option value="cockapoo">cockapoo</option>
+                  <option value="collie">collie</option>
+                  <option value="coonhound">Coonhound</option>
+                  <option value="corgi">Corgi</option>
+                  <option value="cotondetulear">Cotondetulear</option>
+                  <option value="dachshund">Dachshund</option>
+                  <option value="dalmatian">Dalmatian</option>
+                  <option value="dhole">Dhole</option>
+                  <option value="dingo">Dingo</option>
+                  <option value="doberman">Doberman</option>
+                  <option value="entlebucher">Entlebucher</option>
+                  <option value="eskimo">Eskimo</option>
+                  <option value="germanshepherd">German Shepherd</option>
+                  <option value="great-dane">Great Dane</option>
+                  <option value="greyhound">Greyhound</option>
+                  <option value="groenendael">Groenendael</option>
+                  <option value="havanese">Havanese</option>
+                  <option value="hound">Hound</option>
+                  <option value="husky">Husky</option>
+                  <option value="keeshond">Keeshond</option>
+                  <option value="kelpie">Kelpie</option>
+                  <option value="komondor">Komondor</option>
+                  <option value="kuvasz">Kuvasz</option>
+                  <option value="labrador">Labrador</option>
+                  <option value="leonberg">Leonberg</option>
+                  <option value="lhasa">Lhasa</option>
+                  <option value="malamute">Malamute</option>
+                  <option value="malinois">Malinois</option>
+                  <option value="maltese">Maltese</option>
+                  <option value="mastiff">Mastiff</option>
+                  <option value="mexicanhairless">Mexican Hairless</option>
+                  <option value="norwegian-buhund">Norwegian Buhund</option>
+                  <option value="norwegian-elkhound">Norwegian Elkhound</option>
+                  <option value="newfoundland">Newfoundland</option>
+                  <option value="otterhound">Otterhound</option>
+                  <option value="papillon">Papillon</option>
+                  <option value="pekinese">Pekinese</option>
+                  <option value="pembroke">Pembroke</option>
+                  <option value="pinscher">Pinscher</option>
+                  <option value="pitbull">Pitbull</option>
+                  <option value="pointer">Pointer</option>
+                  <option value="pomeranian">Pomeranian</option>
+                  <option value="poodle">Poodle</option>
+                  <option value="pug">Pug</option>
+                  <option value="puggle">Puggle</option>
+                  <option value="pyrenees">Pyrenees</option>
+                  <option value="redbone">Redbone</option>
+                  <option value="retriever">Retriever</option>
+                  <option value="ridgeback">Ridgeback</option>
+                  <option value="rottweiler">Rottweiler</option>
+                  <option value="saluki">Saluki</option>
+                  <option value="samoyed">Samoyed</option>
+                  <option value="schipperke">Schipperke</option>
+                  <option value="schnauzer">Schnauzer</option>
+                  <option value="scottish-deerhound">Scottish Deerhound</option>
+                  <option value="setter">Setter</option>
+                  <option value="sheepdog">Sheep Dog</option>
+                  <option value="shiba">Shiba</option>
+                  <option value="shihtzu">Shihtzu</option>
+                  <option value="spaniel">Spaniel</option>
+                  <option value="springer">Springer</option>
+                  <option value="stbernard">Stbernard</option>
+                  <option value="swiss-mountain">Swiss Mountain</option>
+                  <option value="terrier">Terrier</option>
+                  <option value="vizsla">Vizsla</option>
+                  <option value="waterdog">Waterdog</option>
+                  <option value="weimaraner">Weimaraner</option>
+                  <option value="whippet">Whippet</option>
+                  <option value="wolfhound">Wolfhound</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Level of activity</label>
+              <div class="col-md-6">
+                <select id="activity" name="activity">
+                  <option value="Shy">Shy</option>
+                  <option value="Friendly">Friendly</option>
+                  <option value="Very Sociable">Very Sociable</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Photo</label>
+              <div class="col-md-6">
+                <input type="file" name="image" />
+              </div>
+            </div>
+
+            {{!-- <input type="file" name="photo"> --}}
+
+          </div>
+        </div>
+
+        <br>
+
+        <div class="card">
+          <div class="card-header">3. Other dog's preferences</div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Breed</label>
+              <div class="col-md-6">
+                <select name="prefBreed" id="prefBreed">
+                  <option value="mix">Mix</option>
+                  <option value="affenpinscher">Affenpinscher</option>
+                  <option value="airedale">Airedale</option>
+                  <option value="akita">Akita</option>
+                  <option value="appenzeller">Appenzeller</option>
+                  <option value="australian-shepherd">Australian Shepherd</option>
+                  <option value="basenji">Basenji</option>
+                  <option value="beagle">Beagle</option>
+                  <option value="bernese-mountain">Bernese Mountain</option>
+                  <option value="bichon-frise">Bichon Frise</option>
+                  <option value="bluetick">Bluetick</option>
+                  <option value="borzoi">Borzoi</option>
+                  <option value="bouvier">Bouvier</option>
+                  <option value="boxer">Boxer</option>
+                  <option value="brabancon">Brabancon</option>
+                  <option value="briard">Briard</option>
+                  <option value="bulldog">Bulldog</option>
+                  <option value="bullterrier">Bullterrier</option>
+                  <option value="cairn">Cairn</option>
+                  <option value="cattledog">Cattledog</option>
+                  <option value="chihuahua">Chihuahua</option>
+                  <option value="chow">Chow</option>
+                  <option value="clumber">Clumber</option>
+                  <option value="cockapoo">cockapoo</option>
+                  <option value="collie">collie</option>
+                  <option value="coonhound">Coonhound</option>
+                  <option value="corgi">Corgi</option>
+                  <option value="cotondetulear">Cotondetulear</option>
+                  <option value="dachshund">Dachshund</option>
+                  <option value="dalmatian">Dalmatian</option>
+                  <option value="dhole">Dhole</option>
+                  <option value="dingo">Dingo</option>
+                  <option value="doberman">Doberman</option>
+                  <option value="entlebucher">Entlebucher</option>
+                  <option value="eskimo">Eskimo</option>
+                  <option value="germanshepherd">German Shepherd</option>
+                  <option value="great-dane">Great Dane</option>
+                  <option value="greyhound">Greyhound</option>
+                  <option value="groenendael">Groenendael</option>
+                  <option value="havanese">Havanese</option>
+                  <option value="hound">Hound</option>
+                  <option value="husky">Husky</option>
+                  <option value="keeshond">Keeshond</option>
+                  <option value="kelpie">Kelpie</option>
+                  <option value="komondor">Komondor</option>
+                  <option value="kuvasz">Kuvasz</option>
+                  <option value="labrador">Labrador</option>
+                  <option value="leonberg">Leonberg</option>
+                  <option value="lhasa">Lhasa</option>
+                  <option value="malamute">Malamute</option>
+                  <option value="malinois">Malinois</option>
+                  <option value="maltese">Maltese</option>
+                  <option value="mastiff">Mastiff</option>
+                  <option value="mexicanhairless">Mexican Hairless</option>
+                  <option value="norwegian-buhund">Norwegian Buhund</option>
+                  <option value="norwegian-elkhound">Norwegian Elkhound</option>
+                  <option value="newfoundland">Newfoundland</option>
+                  <option value="otterhound">Otterhound</option>
+                  <option value="papillon">Papillon</option>
+                  <option value="pekinese">Pekinese</option>
+                  <option value="pembroke">Pembroke</option>
+                  <option value="pinscher">Pinscher</option>
+                  <option value="pitbull">Pitbull</option>
+                  <option value="pointer">Pointer</option>
+                  <option value="pomeranian">Pomeranian</option>
+                  <option value="poodle">Poodle</option>
+                  <option value="pug">Pug</option>
+                  <option value="puggle">Puggle</option>
+                  <option value="pyrenees">Pyrenees</option>
+                  <option value="redbone">Redbone</option>
+                  <option value="retriever">Retriever</option>
+                  <option value="ridgeback">Ridgeback</option>
+                  <option value="rottweiler">Rottweiler</option>
+                  <option value="saluki">Saluki</option>
+                  <option value="samoyed">Samoyed</option>
+                  <option value="schipperke">Schipperke</option>
+                  <option value="schnauzer">Schnauzer</option>
+                  <option value="scottish-deerhound">Scottish Deerhound</option>
+                  <option value="setter">Setter</option>
+                  <option value="sheepdog">Sheep Dog</option>
+                  <option value="shiba">Shiba</option>
+                  <option value="shihtzu">Shihtzu</option>
+                  <option value="spaniel">Spaniel</option>
+                  <option value="springer">Springer</option>
+                  <option value="stbernard">Stbernard</option>
+                  <option value="swiss-mountain">Swiss Mountain</option>
+                  <option value="terrier">Terrier</option>
+                  <option value="vizsla">Vizsla</option>
+                  <option value="waterdog">Waterdog</option>
+                  <option value="weimaraner">Weimaraner</option>
+                  <option value="whippet">Whippet</option>
+                  <option value="wolfhound">Wolfhound</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Minimum age</label>
+              <div class="col-md-6">
+                <input type="number" class="form-control" name="prefAgeMin" value="{{dog.searchPreferences.ageMin}}">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="" class="col-md-4 col-form-label text-md-right">Maximum age</label>
+              <div class="col-md-6">
+                <input type="number" class="form-control" name="prefAgeMax" value="{{dog.searchPreferences.ageMax}}">
+              </div>
+            </div>
+
+            <button type="submit">EDIT PROFILE</button>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
