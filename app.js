@@ -24,6 +24,14 @@ mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+  })
+  .then((x) => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch((err) => {
+    console.error("Error connecting to mongo", err);
   });
 
 // View engine setup
@@ -41,6 +49,7 @@ app.use(logger("dev"));
 
 // Session middleware
 // The session package creates a new session middleware for authentication
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET, // Used to sign the session ID cookie

@@ -56,7 +56,7 @@ signupRouter.post("/", parser.single('image'), (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     // Then create the new user ("dog") in DB
-    Dog.create({ dogName, image, email, password: hashedPassword, age, phoneNumber, breed, activity, searchPreferencesObj })
+    Dog.create({ dogName, image, email, password: hashedPassword, age, phoneNumber, breed, activity, searchPreferences: searchPreferencesObj })
       .then(dogCreated => {
         req.session.currentUser = dogCreated;
         res.redirect("/swipe")

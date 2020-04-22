@@ -3,7 +3,6 @@ var swipeRouter = express.Router();
 
 const Dog = require("../models/dog");
 
-
 // GET /swipe
 
 swipeRouter.get("/", (req, res) => {
@@ -36,6 +35,5 @@ swipeRouter.get("/", (req, res) => {
       .catch((err) => console.log(err));
   });
 });
-
 
 module.exports = swipeRouter;
