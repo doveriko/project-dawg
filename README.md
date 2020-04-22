@@ -2,9 +2,7 @@
 
 ## Description
 
-Dawg is a social app designed for dogs. Their owners would create a profile where to look for new friends for his best friend (even if it sounds like a paradox) according to filters like age, breed or level of activity. When a match is found, the owners would have access to each other's contact numbers and allow their pets to meet.
-
-This is a makeover of an original [pair project](https://github.com/guillemtubert/Dawg).
+Dawg is a social app designed for dogs. Their owners would create a profile where to look for new friends for his best friend (even if it sounds like a paradox) according to filters like age, breed or level of activity. When a match is found, the owners would have access to each other's contact numbers and allow their pets to meet. This is a makeover of an original [pair project](https://github.com/guillemtubert/Dawg).
 
 
 
