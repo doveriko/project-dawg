@@ -35,8 +35,8 @@
   "bin": {
     "project-dawg": "seed.js"
   },
-  "engines"​: {
-    ​"node"​: ​"13.x"
+  "engines": {
+    "node": "13.x"
   },
   "repository": {
     "type": "git",
