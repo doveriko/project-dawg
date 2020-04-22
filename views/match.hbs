@@ -2,17 +2,19 @@
   {{> navbar}}
 </div>
 
-<h1>MATCHES</h1>
+<h1>Matches</h1>
 
 {{#each matches}}
 <div>
-  <img src="{{this.image}}" alt="match image" class="displayed-image">
   <p class="match-name">{{this.dogName}} </p>
+  <img src="{{this.image}}" alt="match image" class="displayed-image">
+  <p>Age: {{this.age}}</p>
+  <p>Level of activity: {{this.activity}}</p>
   <p>Contact number: {{this.phoneNumber}}</p>
 </div>
 {{else}}
-<img src="/images/notfound.png" alt="" class="displayed-image">
+<img src="/images/notfound.png" alt="" id="nomatch">
 <br>
 <br>
-<h2>Not matches found yet!</h2>
+<h5>Not matches found yet! <br> Try modifying your <a href="/profile/edit">search preferences</a>.</h5>
 {{/each}}

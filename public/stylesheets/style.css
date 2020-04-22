@@ -227,3 +227,10 @@ a {
   border-radius: 100%;
 }
 
+/* match */
+
+#nomatch {
+  max-width: 90vw;
+  max-height: 50vh;
+  border-radius: 400px;
+}
