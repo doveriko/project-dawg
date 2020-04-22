@@ -44,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/doveriko/project-dawg/issues"
   },
-  "homepage": "https://github.com/doveriko/project-dawg#readme"
+  "homepage": "https://github.com/doveriko/project-dawg#readme",
+  "engines"​: {
+    ​"node"​: ​"13.x"
+  }
 }
