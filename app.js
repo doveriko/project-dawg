@@ -1,6 +1,3 @@
-// Load .env values
-require("dotenv").config();
-
 const express = require("express");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
@@ -15,15 +12,16 @@ const morgan = require("morgan");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
+// Load .env values
+require("dotenv").config();
+
 var router = require("./routes/auth-routes");
 var privateRouter = require("./routes/site-routes");
-
-const dbName = "tinder-dogs";
 
 const app = express();
 
 mongoose
-  .connect(`mongodb://localhost/${dbName}`, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -35,11 +33,6 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
-
-// const app_name = require("./package.json").name;
-// const debug = require("debug")(
-//   `${app_name}:${path.basename(__filename).split(".")[0]}`
-// );
 
 // View engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -58,7 +51,7 @@ app.use(logger("dev"));
 // The session package creates a new session middleware for authentication
 app.use(
   session({
-    secret: "dawg-secret", // Used to sign the session ID cookie
+    secret: process.env.SESSION_SECRET, // Used to sign the session ID cookie
     cookie: { maxAge: 3600000 * 1 },	// expiration date of the cookie (1 day, in milliseconds)
     resave: true,
     saveUninitialized: false,
