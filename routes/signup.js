@@ -4,7 +4,6 @@ var signupRouter = express.Router();
 const bcrypt = require("bcrypt")
 // 2 - Create variable for the number of salt rounds
 const saltRounds = 10;
-// var zxcvbn = require("zxcvbn");
 
 const Dog = require("../models/dog")
 const parser = require('../config/cloudinary');
@@ -39,15 +38,7 @@ signupRouter.post("/", parser.single('image'), (req, res, next) => {
     return;
   }
 
-    // Check the password strength
-  /*   if (zxcvbn(password).score < 3) {
-    res.render("auth/signup-form", {
-      errorMessage: "Password too weak, try again"
-    });
-    return;
-  } */
-
-// 5 - Check in the dogs collection if the email already exists (must be unique)
+  // 5 - Check in the dogs collection if the email already exists (must be unique)
   Dog.findOne({ email })
   .then(user => {
     // If that email already exists in the DB, redirect to 'signup' and display error message
