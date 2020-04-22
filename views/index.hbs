@@ -5,14 +5,6 @@
   </div>
 
   <div>
-    <img src="/images/dawg.png" alt="dawg">
-  </div>
-
-  {{#if errorMessage }}
-  <p class="error-message">{{ errorMessage }}</p>
-  {{/if}}
-
-  <div>
     <form action="/login" method="POST" class="login-form">
 
       <label for="email">Email</label>
@@ -26,5 +18,9 @@
 
     <h6>Don't have an account? <a href="/signup">Register now!</a></h6>
   </div>
+
+  {{#if errorMessage }}
+  <p class="error-message">{{ errorMessage }}</p>
+  {{/if}}
 
 </div>

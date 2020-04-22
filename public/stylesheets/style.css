@@ -13,7 +13,7 @@ body {
 }
 
 h1 {
-  color: rgb(255, 153, 0);
+  color: #F4A394;
   margin-top: 30px;
 }
 
@@ -23,6 +23,10 @@ a {
 
 .error-message {
   color: red;
+}
+
+#logo {
+  max-height: 16rem;
 }
 
 /* Navbar */
@@ -52,7 +56,6 @@ a {
   font-size: 12px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   color: rgb(255, 173, 173);
 }
 
@@ -62,10 +65,11 @@ a {
 
 /* Index - login */
 #index {
-  height: 100vh;
+  height: 90vh;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .login-form {
@@ -134,7 +138,7 @@ a {
 }
 
 .card-header {
-  background-color: rgba(266, 110, 125, 0.6);
+  background-color: #ef697d;
 }
 
 
@@ -204,8 +208,8 @@ a {
 }
 
 .rejectbutton{
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   background-size: 100%;
   background-image: url(/images/red-button.png);
   background-repeat: no-repeat;
@@ -214,8 +218,8 @@ a {
 }
 
 .likebutton{
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   background-size: 100%;
   background-image: url(/images/green-button.png);
   background-repeat: no-repeat;
