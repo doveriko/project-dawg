@@ -35,6 +35,9 @@
   "bin": {
     "project-dawg": "seed.js"
   },
+  "engines"​: {
+    ​"node"​: ​"13.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/doveriko/project-dawg.git"
@@ -44,8 +47,5 @@
   "bugs": {
     "url": "https://github.com/doveriko/project-dawg/issues"
   },
-  "homepage": "https://github.com/doveriko/project-dawg#readme",
-  "engines"​: {
-    ​"node"​: ​"13.x"
-  }
+  "homepage": "https://github.com/doveriko/project-dawg#readme"
 }
