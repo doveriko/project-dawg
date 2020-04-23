@@ -395,7 +395,7 @@ const dogs = [
       ageMin: 6,
       ageMax: 12,
     },
-  },
+  }
 ];
 
 // CONNECT SEED TO MONGO
