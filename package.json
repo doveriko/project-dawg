@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build": "node ./bin/www",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
@@ -44,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/doveriko/project-dawg/issues"
   },
-  "homepage": "https://github.com/doveriko/project-dawg#readme"
+  "homepage": "https://github.com/doveriko/project-dawg#readme",
+  "heroku-run-build-script": true
 }
