@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "start:dev": "nodemon ./bin/www",
     "build": "node ./bin/seed.js",
-    "seed": "node ./bin/seed.js"
+    "seed": "node ./bin/seed.js",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
@@ -47,5 +48,6 @@
   "bugs": {
     "url": "https://github.com/doveriko/project-dawg/issues"
   },
-  "homepage": "https://github.com/doveriko/project-dawg#readme"
+  "homepage": "https://github.com/doveriko/project-dawg#readme",
+  "heroku-run-build-script": true
 }
