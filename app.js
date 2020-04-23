@@ -23,7 +23,7 @@ const app = express();
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then((x) => {
     console.log(
