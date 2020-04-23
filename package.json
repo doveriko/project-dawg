@@ -6,7 +6,6 @@
     "start": "node ./bin/www",
     "start:dev": "nodemon ./bin/www",
     "build": "node ./bin/seed.js",
-    "seed": "node ./bin/seed.js",
     "heroku-postbuild": "echo Skip build on Heroku"
   },
   "dependencies": {
