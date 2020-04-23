@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
-// const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const path = require("path");
 const logger = require("morgan");
 const createError = require("http-errors");
@@ -49,7 +49,6 @@ app.use(logger("dev"));
 
 // Session middleware
 // The session package creates a new session middleware for authentication
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET, // Used to sign the session ID cookie
