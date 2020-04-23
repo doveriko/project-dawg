@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start:dev": "nodemon ./bin/www",
-    "seed": "node ./bin/seed.js",
     "build": "node ./bin/seed.js",
     "heroku-postbuild": "echo Skip build on Heroku"
   },
