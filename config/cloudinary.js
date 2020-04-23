@@ -13,7 +13,7 @@ cloudinary.config({
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: "dawg",
-  allowedFormats: ["jpg", "png", "gif"],
+  allowedFormats: ["jpg", "jpeg", "png", "gif"],
 });
 
 const parser = multer({ storage: storage });
